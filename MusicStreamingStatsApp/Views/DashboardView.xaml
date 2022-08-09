@@ -52,18 +52,27 @@
 
             <Border Padding="20" StrokeThickness="0">
                 <VerticalStackLayout>
-                    <Border
-                        Margin="10"
-                        HeightRequest="60"
-                        HorizontalOptions="End"
-                        Shadow="{StaticResource ShadowSmooth}"
-                        StrokeThickness="0"
-                        WidthRequest="60">
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="30" />
-                        </Border.StrokeShape>
-                        <Image Aspect="AspectFill" Source="{Binding Avatar}" />
-                    </Border>
+
+                    <VerticalStackLayout HorizontalOptions="End">
+                        <Border
+                            Margin="10"
+                            HeightRequest="60"
+                            Shadow="{StaticResource ShadowSmooth}"
+                            StrokeThickness="0"
+                            WidthRequest="60">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="30" />
+                            </Border.StrokeShape>
+                            <Image Aspect="AspectFill" Source="{Binding Avatar}" />
+                        </Border>
+
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            Opacity="0.5"
+                            Text="YATSU"
+                            TextColor="{DynamicResource cPrimaryText}" />
+                    </VerticalStackLayout>
 
                     <controls:LargeStatCount
                         Name="listeners"
