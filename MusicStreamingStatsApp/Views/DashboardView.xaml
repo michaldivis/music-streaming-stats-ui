@@ -3,6 +3,7 @@
     x:Class="MusicStreamingStatsApp.Views.DashboardView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:MusicStreamingStatsApp.Controls"
     xmlns:views="clr-namespace:MusicStreamingStatsApp.Views"
     Title="Dashboard">
 
@@ -11,13 +12,10 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
-        <Color x:Key="cPrimary">#123456</Color>
-        <Color x:Key="cPrimaryText">#fff</Color>
-
         <Shadow
             x:Key="ShadowSmooth"
             Brush="#000"
-            Opacity="0.2"
+            Opacity="0.25"
             Radius="20"
             Offset="10,10" />
 
@@ -32,6 +30,7 @@
                     HeightRequest="100"
                     HorizontalOptions="End"
                     Shadow="{StaticResource ShadowSmooth}"
+                    StrokeThickness="0"
                     WidthRequest="100">
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="5" />
@@ -42,22 +41,23 @@
                 <VerticalStackLayout Grid.Column="1">
                     <Label FontAttributes="Bold" Text="{Binding Position, StringFormat='{}{0:00}'}" />
                     <Label FontAttributes="Bold" Text="{Binding Name}" />
-                    <Label Text="{Binding Streams, StringFormat='{0} streams'}" />
+                    <Label Opacity="0.7" Text="{Binding Streams, StringFormat='{0} streams'}" />
                 </VerticalStackLayout>
             </Grid>
         </DataTemplate>
     </ContentPage.Resources>
 
-    <ScrollView BackgroundColor="#123456">
+    <ScrollView BackgroundColor="{DynamicResource cBackground2}">
         <VerticalStackLayout>
 
-            <Border Padding="20">
+            <Border Padding="20" StrokeThickness="0">
                 <VerticalStackLayout>
                     <Border
                         Margin="10"
                         HeightRequest="60"
                         HorizontalOptions="End"
                         Shadow="{StaticResource ShadowSmooth}"
+                        StrokeThickness="0"
                         WidthRequest="60">
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="30" />
@@ -65,44 +65,23 @@
                         <Image Aspect="AspectFill" Source="{Binding Avatar}" />
                     </Border>
 
-                    <Label TextColor="{DynamicResource cPrimaryText}">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span
-                                    FontAttributes="Bold"
-                                    FontSize="Large"
-                                    Text="{Binding Listeners, StringFormat='{0} listeners'}" />
-                                <Span FontSize="Large" Text=" " />
-                                <Span FontSize="Micro" Text="{Binding ListenersChange, StringFormat='{0}%'}" />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                    <controls:LargeStatCount
+                        Name="listeners"
+                        Change="{Binding ListenersChange}"
+                        Count="{Binding Listeners}"
+                        TextColor="{DynamicResource cPrimaryText}" />
 
-                    <Label TextColor="{DynamicResource cPrimaryText}">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span
-                                    FontAttributes="Bold"
-                                    FontSize="Large"
-                                    Text="{Binding Streams, StringFormat='{0} streams'}" />
-                                <Span FontSize="Large" Text=" " />
-                                <Span FontSize="Micro" Text="{Binding StreamsChange, StringFormat='{0}%'}" />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                    <controls:LargeStatCount
+                        Name="streams"
+                        Change="{Binding StreamsChange}"
+                        Count="{Binding Streams}"
+                        TextColor="{DynamicResource cPrimaryText}" />
 
-                    <Label TextColor="{DynamicResource cPrimaryText}">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span
-                                    FontAttributes="Bold"
-                                    FontSize="Large"
-                                    Text="{Binding Followers, StringFormat='{0} followers'}" />
-                                <Span FontSize="Large" Text=" " />
-                                <Span FontSize="Micro" Text="{Binding FollowersChange, StringFormat='{0}%'}" />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                    <controls:LargeStatCount
+                        Name="followers"
+                        Change="{Binding FollowersChange}"
+                        Count="{Binding Followers}"
+                        TextColor="{DynamicResource cPrimaryText}" />
 
                     <Label
                         Margin="0,10,0,0"
@@ -113,6 +92,7 @@
                     <BoxView
                         Margin="0,10,0,10"
                         HeightRequest="1"
+                        Opacity="0.25"
                         Color="{DynamicResource cPrimaryText}" />
 
                     <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
@@ -133,7 +113,7 @@
                 </VerticalStackLayout>
             </Border>
 
-            <Border>
+            <Border StrokeThickness="0">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="50" />
                 </Border.StrokeShape>

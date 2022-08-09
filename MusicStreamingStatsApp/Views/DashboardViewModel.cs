@@ -36,15 +36,15 @@ public partial class DashboardViewModel : ObservableObject
         var random = new Random(Seed);
 
         Listeners = random.Next(500, 1000);
-        ListenersChange = random.Next(-5, 25);
+        ListenersChange = random.Next(-10, -1);
 
         Streams = random.Next(1500, 4000);
-        StreamsChange = random.Next(-5, 25);
+        StreamsChange = random.Next(5, 25);
 
         Followers = random.Next(1000, 2000);
-        FollowersChange = random.Next(-2, 10);
+        FollowersChange = random.Next(5, 15);
 
-        ListeningNow = random.Next(10, 200);
+        ListeningNow = random.Next(10, 350);
 
         var songStreams = Enumerable
             .Range(0, 6)
