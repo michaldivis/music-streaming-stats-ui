@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MusicStreamingStatsApp.Views.DashboardView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:MusicStreamingStatsApp.Views"
+    Title="Dashboard">
+
+    <ContentPage.BindingContext>
+        <views:DashboardViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <Color x:Key="cPrimary">#123456</Color>
+        <Color x:Key="cPrimaryText">#fff</Color>
+
+        <Shadow
+            x:Key="ShadowSmooth"
+            Brush="{DynamicResource cPrimary}"
+            Opacity="0.2"
+            Radius="20"
+            Offset="10,10" />
+    </ContentPage.Resources>
+
+    <ScrollView BackgroundColor="#123456">
+        <VerticalStackLayout>
+
+            <Border Padding="20">
+                <VerticalStackLayout>
+                    <Border
+                        Margin="10"
+                        HeightRequest="60"
+                        HorizontalOptions="End"
+                        Shadow="{StaticResource ShadowSmooth}"
+                        WidthRequest="60">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="30" />
+                        </Border.StrokeShape>
+                        <Image Aspect="AspectFill" Source="{Binding Avatar}" />
+                    </Border>
+
+                    <Label TextColor="{DynamicResource cPrimaryText}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span
+                                    FontAttributes="Bold"
+                                    FontSize="Large"
+                                    Text="{Binding Listeners, StringFormat='{0} listeners'}" />
+                                <Span FontSize="Large" Text=" " />
+                                <Span FontSize="Micro" Text="{Binding ListenersChange, StringFormat='{0}%'}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label TextColor="{DynamicResource cPrimaryText}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span
+                                    FontAttributes="Bold"
+                                    FontSize="Large"
+                                    Text="{Binding Streams, StringFormat='{0} streams'}" />
+                                <Span FontSize="Large" Text=" " />
+                                <Span FontSize="Micro" Text="{Binding StreamsChange, StringFormat='{0}%'}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label TextColor="{DynamicResource cPrimaryText}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span
+                                    FontAttributes="Bold"
+                                    FontSize="Large"
+                                    Text="{Binding Followers, StringFormat='{0} followers'}" />
+                                <Span FontSize="Large" Text=" " />
+                                <Span FontSize="Micro" Text="{Binding FollowersChange, StringFormat='{0}%'}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label
+                        Margin="0,10,0,0"
+                        FontSize="Micro"
+                        Text="Last 28 days"
+                        TextColor="{DynamicResource cPrimaryText}" />
+
+                    <BoxView
+                        Margin="0,10,0,10"
+                        HeightRequest="1"
+                        Color="{DynamicResource cPrimaryText}" />
+
+                    <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
+                        <ActivityIndicator
+                            Grid.Column="0"
+                            HeightRequest="24"
+                            IsRunning="True"
+                            VerticalOptions="Center"
+                            WidthRequest="24"
+                            Color="{DynamicResource cPrimaryText}" />
+                        <Label
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            Text="{Binding ListeningNow, StringFormat='{0} people listening now'}"
+                            TextColor="{DynamicResource cPrimaryText}"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border>
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="50,50,0,0" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Padding="20" BackgroundColor="#fff">
+                    <Label
+                        Margin="10,0,0,0"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Text="Your top songs" />
+                    <Label
+                        Margin="10,0,0,10"
+                        FontSize="Micro"
+                        Text="Last 28 days" />
+
+                    <VerticalStackLayout BindableLayout.ItemsSource="{Binding Songs}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid
+                                    Padding="0,5"
+                                    ColumnDefinitions="auto,*"
+                                    ColumnSpacing="10">
+
+                                    <Border
+                                        Grid.Column="0"
+                                        HeightRequest="100"
+                                        HorizontalOptions="End"
+                                        Shadow="{StaticResource ShadowSmooth}"
+                                        WidthRequest="100">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="5" />
+                                        </Border.StrokeShape>
+                                        <Image Source="{Binding Image}" />
+                                    </Border>
+
+                                    <VerticalStackLayout Grid.Column="1">
+                                        <Label FontAttributes="Bold" Text="{Binding Name}" />
+                                        <Label Text="{Binding Streams, StringFormat='{0} streams'}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
