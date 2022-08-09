@@ -1,4 +1,5 @@
 ﻿using MusicStreamingStatsApp.Models;
+using System.Collections.ObjectModel;
 
 namespace MusicStreamingStatsApp.Views;
 
@@ -14,42 +15,67 @@ public partial class DashboardViewModel : ObservableObject
     [ObservableProperty] int _followersChange;
     [ObservableProperty] int _listeningNow;
 
-    public List<SongDetails> Songs { get; } = new();
+    [ObservableProperty] int _seed;
+
+    [ObservableProperty] bool _isReloading;
+
+    public ObservableCollection<SongDetails> Songs { get; } = new();
+    public ObservableCollection<SongDetails> Playlists { get; } = new();
 
     public DashboardViewModel()
     {
-        LoadData();
+        Reload();
     }
 
-    private void LoadData()
+    [RelayCommand]
+    private void Reload()
     {
-        _avatar = "avatar.jpg";
+        Avatar = "avatar.jpg";
 
-        var random = new Random(444555666);
+        Seed = Random.Shared.Next();
+        var random = new Random(Seed);
 
-        _listeners = random.Next(100, 1000);
-        _listenersChange = random.Next(-10, 20);
+        Listeners = random.Next(500, 1000);
+        ListenersChange = random.Next(-5, 25);
 
-        _streams = random.Next(250, 2500);
-        _streamsChange = random.Next(-10, 20);
+        Streams = random.Next(1500, 4000);
+        StreamsChange = random.Next(-5, 25);
 
-        _followers = random.Next(1000, 2000);
-        _followersChange = random.Next(-5, 10);
+        Followers = random.Next(1000, 2000);
+        FollowersChange = random.Next(-2, 10);
 
-        _listeningNow = random.Next(10, 120);
+        ListeningNow = random.Next(10, 200);
 
-        int GetStreams() => random.Next(_streams / 15, _streams / 5);
+        var songStreams = Enumerable
+            .Range(0, 6)
+            .Select(a => random.Next(50, 500))
+            .OrderByDescending(a => a)
+            .ToList();
 
         var songs = new[]
         {
-            new SongDetails("Dreamer", "dreamer.jpg", GetStreams()),
-            new SongDetails("Ornaments", "dreamer.jpg", GetStreams()),
-            new SongDetails("Labyrinth", "dreamer.jpg", GetStreams()),
-            new SongDetails("Spectre", "spectre.jpg", GetStreams()),
-            new SongDetails("Djinn", "djinn.jpg", GetStreams()),
-            new SongDetails("Kraken", "kraken.jpg", GetStreams()),
+            new SongDetails(1, "Dreamer", "dreamer.jpg", songStreams.ElementAt(0)),
+            new SongDetails(2, "Spectre", "spectre.jpg", songStreams.ElementAt(1)),
+            new SongDetails(3, "Ornaments", "dreamer.jpg", songStreams.ElementAt(2)),
+            new SongDetails(4, "Labyrinth", "dreamer.jpg", songStreams.ElementAt(3)),
+            new SongDetails(5, "Djinn", "djinn.jpg", songStreams.ElementAt(4)),
+            new SongDetails(6, "Kraken", "kraken.jpg", songStreams.ElementAt(5)),
         };
 
-        Songs.AddRange(songs.OrderByDescending(a => a.Streams));
+        Songs.Clear();
+        Songs.AddRange(songs);
+
+        int GetPlaylistStreams() => random.Next(100, 1000);
+
+        var playlists = new[]
+        {
+            new SongDetails(1, "Hidden Djems", "hiddendjems.jpg", GetPlaylistStreams()),
+            new SongDetails(2, "Yatsu: Complete", "yatsucomplete.jpg", GetPlaylistStreams())
+        };
+
+        Playlists.Clear();
+        Playlists.AddRange(playlists.OrderByDescending(a => a.Streams));
+
+        IsReloading = false;
     }
 }

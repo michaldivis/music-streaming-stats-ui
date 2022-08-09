@@ -1,2 +1,2 @@
 ﻿namespace MusicStreamingStatsApp.Models;
-public record SongDetails(string Name, string Image, int Streams);
+public record SongDetails(int Position, string Name, string Image, int Streams);

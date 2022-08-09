@@ -16,10 +16,36 @@
 
         <Shadow
             x:Key="ShadowSmooth"
-            Brush="{DynamicResource cPrimary}"
+            Brush="#000"
             Opacity="0.2"
             Radius="20"
             Offset="10,10" />
+
+        <DataTemplate x:Key="SongInfoDataTemplate">
+            <Grid
+                Padding="0,5"
+                ColumnDefinitions="auto,*"
+                ColumnSpacing="10">
+
+                <Border
+                    Grid.Column="0"
+                    HeightRequest="100"
+                    HorizontalOptions="End"
+                    Shadow="{StaticResource ShadowSmooth}"
+                    WidthRequest="100">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="5" />
+                    </Border.StrokeShape>
+                    <Image Source="{Binding Image}" />
+                </Border>
+
+                <VerticalStackLayout Grid.Column="1">
+                    <Label FontAttributes="Bold" Text="{Binding Position, StringFormat='{}{0:00}'}" />
+                    <Label FontAttributes="Bold" Text="{Binding Name}" />
+                    <Label Text="{Binding Streams, StringFormat='{0} streams'}" />
+                </VerticalStackLayout>
+            </Grid>
+        </DataTemplate>
     </ContentPage.Resources>
 
     <ScrollView BackgroundColor="#123456">
@@ -109,50 +135,55 @@
 
             <Border>
                 <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="50,50,0,0" />
+                    <RoundRectangle CornerRadius="50" />
                 </Border.StrokeShape>
                 <VerticalStackLayout Padding="20" BackgroundColor="#fff">
+
                     <Label
-                        Margin="10,0,0,0"
+                        Margin="5,10,0,0"
                         FontAttributes="Bold"
                         FontSize="Medium"
                         Text="Your top songs" />
                     <Label
-                        Margin="10,0,0,10"
+                        Margin="5,0,0,10"
                         FontSize="Micro"
                         Text="Last 28 days" />
 
-                    <VerticalStackLayout BindableLayout.ItemsSource="{Binding Songs}">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <Grid
-                                    Padding="0,5"
-                                    ColumnDefinitions="auto,*"
-                                    ColumnSpacing="10">
+                    <VerticalStackLayout BindableLayout.ItemTemplate="{StaticResource SongInfoDataTemplate}" BindableLayout.ItemsSource="{Binding Songs}" />
 
-                                    <Border
-                                        Grid.Column="0"
-                                        HeightRequest="100"
-                                        HorizontalOptions="End"
-                                        Shadow="{StaticResource ShadowSmooth}"
-                                        WidthRequest="100">
-                                        <Border.StrokeShape>
-                                            <RoundRectangle CornerRadius="5" />
-                                        </Border.StrokeShape>
-                                        <Image Source="{Binding Image}" />
-                                    </Border>
+                    <Label
+                        Margin="5,10"
+                        FontAttributes="Bold"
+                        Opacity="0.5"
+                        Text="SEE SONGS ➡" />
 
-                                    <VerticalStackLayout Grid.Column="1">
-                                        <Label FontAttributes="Bold" Text="{Binding Name}" />
-                                        <Label Text="{Binding Streams, StringFormat='{0} streams'}" />
-                                    </VerticalStackLayout>
-                                </Grid>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                    </VerticalStackLayout>
+                    <Label
+                        Margin="5,20,0,0"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Text="Your top playlists" />
+                    <Label
+                        Margin="5,0,0,10"
+                        FontSize="Micro"
+                        Text="Last 28 days" />
+
+                    <VerticalStackLayout BindableLayout.ItemTemplate="{StaticResource SongInfoDataTemplate}" BindableLayout.ItemsSource="{Binding Playlists}" />
+
+                    <Label
+                        Margin="5,10"
+                        FontAttributes="Bold"
+                        Opacity="0.5"
+                        Text="SEE PLAYLISTS ➡" />
 
                 </VerticalStackLayout>
             </Border>
+
+            <Label
+                Margin="10"
+                HorizontalTextAlignment="Center"
+                Opacity="0.5"
+                Text="{Binding Seed, StringFormat='Seed: {0}'}"
+                TextColor="{DynamicResource cPrimaryText}" />
 
         </VerticalStackLayout>
     </ScrollView>
