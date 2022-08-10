@@ -48,6 +48,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\fa-solid-900.ttf" />
 	  <None Remove="Resources\Images\avatar.jpg" />
 	  <None Remove="Resources\Images\dreamer.jpg" />
 	  <None Remove="Resources\Raw\playback_indicator.json" />

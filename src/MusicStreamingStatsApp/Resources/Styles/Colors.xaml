@@ -5,8 +5,8 @@
     <Color x:Key="cBackground1">#141326</Color>
     <Color x:Key="cBackground2">#26284D</Color>
     <Color x:Key="cBackground3">#334866</Color>
-    <Color x:Key="cText">#fff</Color>
-    <Color x:Key="cTextDisabled">#80ffffff</Color>
+    <Color x:Key="cText">#000</Color>
+    <Color x:Key="cTextDisabled">#80000000</Color>
     <Color x:Key="cPrimary">#17B794</Color>
     <Color x:Key="cPrimaryAlt">#149f9f</Color>
     <Color x:Key="cPrimaryText">#fff</Color>

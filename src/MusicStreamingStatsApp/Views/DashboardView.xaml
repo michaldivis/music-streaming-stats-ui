@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:MusicStreamingStatsApp.Controls"
+    xmlns:fi="clr-namespace:MusicStreamingStatsApp.FontIcons"
     xmlns:skiaExtCtrls="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     xmlns:views="clr-namespace:MusicStreamingStatsApp.Views"
     Title="Dashboard">
@@ -40,9 +41,18 @@
                 </Border>
 
                 <VerticalStackLayout Grid.Column="1">
-                    <Label FontAttributes="Bold" Text="{Binding Position, StringFormat='{}{0:00}'}" />
-                    <Label FontAttributes="Bold" Text="{Binding Name}" />
-                    <Label Opacity="0.7" Text="{Binding Streams, StringFormat='{0} streams'}" />
+                    <Label
+                        FontAttributes="Bold"
+                        Text="{Binding Position, StringFormat='{}{0:00}'}"
+                        TextColor="{DynamicResource cText}" />
+                    <Label
+                        FontAttributes="Bold"
+                        Text="{Binding Name}"
+                        TextColor="{DynamicResource cText}" />
+                    <Label
+                        Opacity="0.7"
+                        Text="{Binding Streams, StringFormat='{0} streams'}"
+                        TextColor="{DynamicResource cText}" />
                 </VerticalStackLayout>
             </Grid>
         </DataTemplate>
@@ -139,11 +149,13 @@
                         Margin="5,10,0,0"
                         FontAttributes="Bold"
                         FontSize="Medium"
-                        Text="Your top songs" />
+                        Text="Your top songs"
+                        TextColor="{DynamicResource cText}" />
                     <Label
                         Margin="5,0,0,10"
                         FontSize="Micro"
-                        Text="Last 28 days" />
+                        Text="Last 28 days"
+                        TextColor="{DynamicResource cText}" />
 
                     <VerticalStackLayout BindableLayout.ItemTemplate="{StaticResource SongInfoDataTemplate}" BindableLayout.ItemsSource="{Binding Songs}" />
 
@@ -151,17 +163,26 @@
                         Margin="5,10"
                         FontAttributes="Bold"
                         Opacity="0.5"
-                        Text="SEE SONGS ➡" />
+                        TextColor="{DynamicResource cText}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="SEE SONGS " />
+                                <Span FontFamily="FaSolid" Text="{x:Static fi:FaSolid.ArrowRight}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
 
                     <Label
                         Margin="5,20,0,0"
                         FontAttributes="Bold"
                         FontSize="Medium"
-                        Text="Your top playlists" />
+                        Text="Your top playlists"
+                        TextColor="{DynamicResource cText}" />
                     <Label
                         Margin="5,0,0,10"
                         FontSize="Micro"
-                        Text="Last 28 days" />
+                        Text="Last 28 days"
+                        TextColor="{DynamicResource cText}" />
 
                     <VerticalStackLayout BindableLayout.ItemTemplate="{StaticResource SongInfoDataTemplate}" BindableLayout.ItemsSource="{Binding Playlists}" />
 
@@ -169,7 +190,14 @@
                         Margin="5,10"
                         FontAttributes="Bold"
                         Opacity="0.5"
-                        Text="SEE PLAYLISTS ➡" />
+                        TextColor="{DynamicResource cText}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="SEE PLAYLISTS " />
+                                <Span FontFamily="FaSolid" Text="{x:Static fi:FaSolid.ArrowRight}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
 
                 </VerticalStackLayout>
             </Border>
@@ -183,4 +211,5 @@
 
         </VerticalStackLayout>
     </ScrollView>
+
 </ContentPage>
