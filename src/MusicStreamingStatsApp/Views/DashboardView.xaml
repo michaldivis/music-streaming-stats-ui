@@ -64,13 +64,10 @@
         </ScrollView.Background>
         <VerticalStackLayout>
 
-            <Border
-                Padding="20"
-                BackgroundColor="Transparent"
-                StrokeThickness="0">
+            <Border BackgroundColor="Transparent" StrokeThickness="0">
                 <VerticalStackLayout>
 
-                    <VerticalStackLayout HorizontalOptions="End">
+                    <VerticalStackLayout Margin="0,20,20,0" HorizontalOptions="End">
                         <Image
                             HeightRequest="60"
                             Shadow="{StaticResource ShadowSmooth}"
@@ -87,56 +84,58 @@
                         <Label
                             FontAttributes="Bold"
                             HorizontalTextAlignment="Center"
-                            Opacity="0.5"
+                            Opacity="0.7"
                             Text="YATSU"
                             TextColor="{DynamicResource cPrimaryText}" />
                     </VerticalStackLayout>
 
-                    <controls:LargeStatCount
-                        Name="listeners"
-                        Change="{Binding ListenersChange}"
-                        Count="{Binding Listeners}"
-                        TextColor="{DynamicResource cPrimaryText}" />
+                    <VerticalStackLayout Padding="20">
+                        <controls:LargeStatCount
+                            Name="listeners"
+                            Change="{Binding ListenersChange}"
+                            Count="{Binding Listeners}"
+                            TextColor="{DynamicResource cPrimaryText}" />
 
-                    <controls:LargeStatCount
-                        Name="streams"
-                        Change="{Binding StreamsChange}"
-                        Count="{Binding Streams}"
-                        TextColor="{DynamicResource cPrimaryText}" />
+                        <controls:LargeStatCount
+                            Name="streams"
+                            Change="{Binding StreamsChange}"
+                            Count="{Binding Streams}"
+                            TextColor="{DynamicResource cPrimaryText}" />
 
-                    <controls:LargeStatCount
-                        Name="followers"
-                        Change="{Binding FollowersChange}"
-                        Count="{Binding Followers}"
-                        TextColor="{DynamicResource cPrimaryText}" />
+                        <controls:LargeStatCount
+                            Name="followers"
+                            Change="{Binding FollowersChange}"
+                            Count="{Binding Followers}"
+                            TextColor="{DynamicResource cPrimaryText}" />
 
-                    <Label
-                        Margin="0,10,0,0"
-                        FontSize="Micro"
-                        Text="Last 28 days"
-                        TextColor="{DynamicResource cPrimaryText}" />
-
-                    <BoxView
-                        Margin="0,10,0,10"
-                        HeightRequest="1"
-                        Opacity="0.25"
-                        Color="{DynamicResource cPrimaryText}" />
-
-                    <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
-                        <skiaExtCtrls:SKLottieView
-                            Grid.Column="0"
-                            HeightRequest="24"
-                            RepeatCount="-1"
-                            Source="playback_indicator.json"
-                            VerticalOptions="Center"
-                            WidthRequest="24" />
                         <Label
-                            Grid.Column="1"
-                            FontAttributes="Bold"
-                            Text="{Binding ListeningNow, StringFormat='{0} people listening now'}"
-                            TextColor="{DynamicResource cPrimaryText}"
-                            VerticalTextAlignment="Center" />
-                    </Grid>
+                            Margin="0,10,0,0"
+                            FontSize="Micro"
+                            Text="Last 28 days"
+                            TextColor="{DynamicResource cPrimaryText}" />
+
+                        <BoxView
+                            Margin="0,10,0,10"
+                            HeightRequest="1"
+                            Opacity="0.25"
+                            Color="{DynamicResource cPrimaryText}" />
+
+                        <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
+                            <skiaExtCtrls:SKLottieView
+                                Grid.Column="0"
+                                HeightRequest="24"
+                                RepeatCount="-1"
+                                Source="playback_indicator.json"
+                                VerticalOptions="Center"
+                                WidthRequest="24" />
+                            <Label
+                                Grid.Column="1"
+                                FontAttributes="Bold"
+                                Text="{Binding ListeningNow, StringFormat='{0} people listening now'}"
+                                TextColor="{DynamicResource cPrimaryText}"
+                                VerticalTextAlignment="Center" />
+                        </Grid>
+                    </VerticalStackLayout>
                 </VerticalStackLayout>
             </Border>
 

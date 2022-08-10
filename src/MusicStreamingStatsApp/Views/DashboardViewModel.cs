@@ -44,7 +44,7 @@ public partial class DashboardViewModel : ObservableObject
         Followers = random.Next(1000, 2000);
         FollowersChange = random.Next(5, 15);
 
-        ListeningNow = random.Next(10, 350);
+        ListeningNow = random.Next(10, 150);
 
         var songStreams = Enumerable
             .Range(0, 6)
