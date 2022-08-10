@@ -67,7 +67,10 @@
         </ScrollView.Background>
         <VerticalStackLayout>
 
-            <Border Padding="20" StrokeThickness="0">
+            <Border
+                Padding="20"
+                BackgroundColor="Transparent"
+                StrokeThickness="0">
                 <VerticalStackLayout>
 
                     <VerticalStackLayout HorizontalOptions="End">
@@ -202,8 +205,13 @@
                 </VerticalStackLayout>
             </Border>
 
-            <Label
+            <Button
                 Margin="10"
+                Command="{Binding ReloadCommand}"
+                Text="Reload" />
+
+            <Label
+                Margin="10,0,10,10"
                 HorizontalTextAlignment="Center"
                 Opacity="0.5"
                 Text="{Binding Seed, StringFormat='Seed: {0}'}"
