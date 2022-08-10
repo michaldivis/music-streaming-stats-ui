@@ -48,7 +48,13 @@
         </DataTemplate>
     </ContentPage.Resources>
 
-    <ScrollView BackgroundColor="{DynamicResource cBackground2}">
+    <ScrollView>
+        <ScrollView.Background>
+            <LinearGradientBrush>
+                <GradientStop Offset="0.1" Color="{DynamicResource cBackground3}" />
+                <GradientStop Offset="1.0" Color="{DynamicResource cBackground2}" />
+            </LinearGradientBrush>
+        </ScrollView.Background>
         <VerticalStackLayout>
 
             <Border Padding="20" StrokeThickness="0">
