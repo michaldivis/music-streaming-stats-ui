@@ -27,18 +27,15 @@
                 ColumnDefinitions="auto,*"
                 ColumnSpacing="10">
 
-                <Border
-                    Grid.Column="0"
+                <Image
                     HeightRequest="100"
-                    HorizontalOptions="End"
                     Shadow="{StaticResource ShadowSmooth}"
-                    StrokeThickness="0"
+                    Source="{Binding Image}"
                     WidthRequest="100">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="5" />
-                    </Border.StrokeShape>
-                    <Image Source="{Binding Image}" />
-                </Border>
+                    <Image.Clip>
+                        <RoundRectangleGeometry CornerRadius="5" Rect="0,0,100,100" />
+                    </Image.Clip>
+                </Image>
 
                 <VerticalStackLayout Grid.Column="1">
                     <Label
@@ -74,17 +71,18 @@
                 <VerticalStackLayout>
 
                     <VerticalStackLayout HorizontalOptions="End">
-                        <Border
-                            Margin="10"
+                        <Image
                             HeightRequest="60"
                             Shadow="{StaticResource ShadowSmooth}"
-                            StrokeThickness="0"
+                            Source="{Binding Avatar}"
                             WidthRequest="60">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="30" />
-                            </Border.StrokeShape>
-                            <Image Aspect="AspectFill" Source="{Binding Avatar}" />
-                        </Border>
+                            <Image.Clip>
+                                <EllipseGeometry
+                                    Center="30,30"
+                                    RadiusX="30"
+                                    RadiusY="30" />
+                            </Image.Clip>
+                        </Image>
 
                         <Label
                             FontAttributes="Bold"
