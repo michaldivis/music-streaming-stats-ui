@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:MusicStreamingStatsApp.Controls"
+    xmlns:skiaExtCtrls="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     xmlns:views="clr-namespace:MusicStreamingStatsApp.Views"
     Title="Dashboard">
 
@@ -105,13 +106,13 @@
                         Color="{DynamicResource cPrimaryText}" />
 
                     <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
-                        <ActivityIndicator
+                        <skiaExtCtrls:SKLottieView
                             Grid.Column="0"
                             HeightRequest="24"
-                            IsRunning="True"
+                            RepeatCount="-1"
+                            Source="playback_indicator.json"
                             VerticalOptions="Center"
-                            WidthRequest="24"
-                            Color="{DynamicResource cPrimaryText}" />
+                            WidthRequest="24" />
                         <Label
                             Grid.Column="1"
                             FontAttributes="Bold"
