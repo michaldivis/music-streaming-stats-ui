@@ -62,7 +62,7 @@
         <ScrollView.Background>
             <LinearGradientBrush>
                 <GradientStop Offset="0.1" Color="{DynamicResource cBackground3}" />
-                <GradientStop Offset="1.0" Color="{DynamicResource cBackground2}" />
+                <GradientStop Offset="1.0" Color="{DynamicResource cBackground1}" />
             </LinearGradientBrush>
         </ScrollView.Background>
         <VerticalStackLayout>
