@@ -12,10 +12,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>MusicStreamingStatsApp</ApplicationTitle>
+		<ApplicationTitle>Music Streaming Stats</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.musicstreamingstatsapp</ApplicationId>
+		<ApplicationId>com.michaldivis.musicstreamingstatsapp</ApplicationId>
 		<ApplicationIdGuid>236856CB-11B8-4DC1-8261-072A04D980D4</ApplicationIdGuid>
 
 		<!-- Versions -->
